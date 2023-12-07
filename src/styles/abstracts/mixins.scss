@@ -1,0 +1,18 @@
+$breakpoints: (
+    'sm': '28.125rem',
+    'md': '50rem',
+    'lg': '75rem',
+    'xl': '87.5rem',
+);
+
+@mixin breakpointMin($screen-size) {
+    @media (min-width: map-get($breakpoints, $screen-size)) {
+        @content;
+    }
+}
+
+@mixin breakpointMax($screen-size) {
+    @media (max-width: map-get($breakpoints, $screen-size)) {
+        @content;
+    }
+}
