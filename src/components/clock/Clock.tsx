@@ -28,7 +28,9 @@ const Counter = () => {
 
     return (
         <section className='counter'>
-            {minutesState} {secondsState}
+            {String(minutesState).padStart(2, '0')}
+            {':'}
+            {String(secondsState).padStart(2, '0')}
         </section>
     );
 };
