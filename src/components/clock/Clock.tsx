@@ -29,15 +29,21 @@ const ControlButtons = () => {
     };
 
     return (
-        <>
-            <button onClick={handleButtonText(switchButtonText)}>
+        <div className='button__container'>
+            <button
+                className='button button--switch'
+                onClick={handleButtonText(switchButtonText)}
+            >
                 {switchButtonText}
             </button>
 
-            <button onClick={handleButtonText(actionButtonText)}>
+            <button
+                className='button button--action'
+                onClick={handleButtonText(actionButtonText)}
+            >
                 {actionButtonText}
             </button>
-        </>
+        </div>
     );
 };
 
