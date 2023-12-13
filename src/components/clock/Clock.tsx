@@ -2,11 +2,48 @@ import React from 'react';
 import '../../styles/components/clock/clock.scss';
 import { useState, useEffect } from 'react';
 
-function MyComponent() {}
+const ControlButtons = () => {
+    // Start/stop button
+    const [switchButtonText, setSwitchButtonText] = useState('Start');
+    // Pause/clear button
+    const [actionButtonText, setActionButtonText] = useState('Clear');
+
+    const handleButtonText = (buttonToHandle: string) => () => {
+        //switch
+        switch (buttonToHandle) {
+            case 'Start':
+                setSwitchButtonText('Stop');
+                break;
+            case 'Stop':
+                setSwitchButtonText('Start');
+                break;
+
+            case 'Clear':
+                setActionButtonText('Skip');
+                break;
+
+            case 'Skip':
+                setActionButtonText('Clear');
+                break;
+        }
+    };
+
+    return (
+        <>
+            <button onClick={handleButtonText(switchButtonText)}>
+                {switchButtonText}
+            </button>
+
+            <button onClick={handleButtonText(actionButtonText)}>
+                {actionButtonText}
+            </button>
+        </>
+    );
+};
 
 const Counter = () => {
     const [minutesState, setMinutesState] = useState(20);
-    const [secondsState, setSecondsState] = useState(0);
+    const [secondsState, setSecondsState] = useState(7);
     let seconds = secondsState;
     let minutes = minutesState;
 
@@ -36,7 +73,11 @@ const Counter = () => {
 };
 
 const Clock = () => {
-    return <div className='clock'>{Counter()}</div>;
+    return (
+        <div className='clock'>
+            {Counter()} {ControlButtons()}
+        </div>
+    );
 };
 
 export default Clock;
